@@ -25,8 +25,8 @@ const LandingPage = () => {
         <div className='header-section'>
           <div className='overlay'>
             <div className='header-content-text container--narrow'>
-              <h1>Make a valuable insight from your stock prediction </h1>
-              <p>Sightfull is an investment platform where investors can have useful insights to enable stock tradres make better deisions thgat will increase profits and reduce losses.</p>
+              <h1>Make a valuable insight from your stock histories </h1>
+              <p>Insight is an investment platform where investors can have useful insights to enable stock tradres make better deisions thgat will increase profits and reduce losses.</p>
               <button className='header-section-button'>Go to Dashboard</button>
             </div>
           </div>
@@ -39,7 +39,7 @@ const LandingPage = () => {
           <div className='whatwedo-section'>
             <div className='whatwedo-text'>
               <h1>We help you <span>monitor</span> your risk and visualize insight.</h1>
-              <p>Sightfull is an investment platform where investors can have useful insights to enable stock tradres make better deisions thgat will increase profits and reduce losses.</p>
+              <p>Insight is an investment platform where investors can have useful insights to enable stock tradres make better deisions thgat will increase profits and reduce losses.</p>
             </div>
             <div>
               <img src={ SampleChart } alt="a sample of a chart" className='whatwedo-img' />

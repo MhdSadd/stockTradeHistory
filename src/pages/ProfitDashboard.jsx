@@ -1,4 +1,3 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {React, useEffect, useState} from 'react';
@@ -22,8 +21,11 @@ import {useSelector, useDispatch } from 'react-redux';
 import profileReducer from  '../redux/profile/profileSlice';
 import categoriesReducer from  '../redux/category/categorySlice';
 
-import {Divider} from 'react-bootstrap';
 
+import Dropdown from 'react-bootstrap/Dropdown';
+
+
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
@@ -32,13 +34,15 @@ import {  tradedata, filteredTrade, } from '../redux/trade/trade';
 
 import {  categoriesdata } from '../redux/category/category';
 
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 
-
+// import DatePicker from 'react-datepicker';
 
 import jwt from 'jwt-decode';
 import tradeSlice from '../redux/trade/tradeSlice';
 import { Spinner } from 'react-bootstrap';
+
+// import 'react-datepicker/dist/react-datepicker.css';
 
 
 
@@ -118,9 +122,77 @@ const ProfitDashboard = () => {
   
   
   const [name, setName] = useState("");
-
   
-  const { register, errors, handleSubmit } = useForm()
+  const [month, setMonth] = useState("January");
+  
+  const [selectedDate, setSelectedDate] = useState(null );
+
+let months = [
+  {
+    key: "January",
+    value: "1",
+  },
+  
+  {
+    key: "Febuary",
+    value: "2",
+  },
+  
+  {
+    key: "March",
+    value: "3",
+  },
+  
+  {
+    key: "April",
+    value: "4",
+  },
+  
+  {
+    key: "May",
+    value: "5",
+  },
+  
+  {
+    key: "June",
+    value: "6",
+  },
+  
+  {
+    key: "July",
+    value: "7",
+  },
+  
+  {
+    key: "August",
+    value: "8",
+  },
+  
+  {
+    key: "September",
+    value: "9",
+  },
+  
+  
+  {
+    key: "October",
+    value: "10",
+  },
+  
+  {
+    key: "November",
+    value: "11",
+  },
+  
+  {
+    key: "December",
+    value: "12",
+  },
+];
+
+
+// this.pickAMonth = React.createRef()
+
 
 
 
@@ -181,6 +253,7 @@ const ProfitDashboard = () => {
   }
   
   
+  
   let loadTrades = async () =>  {
     dispatch(tradePending())
 
@@ -192,6 +265,40 @@ const ProfitDashboard = () => {
       dispatch(tradeFail("fetch failed"));
     }    
   }
+  
+  
+  
+  const handleMonthOnChange = async(event) => {
+    
+  let arr  =  await stocks.filter(data => {
+    let splitResult = data.Date.split('/')
+    let month = splitResult[1].replace(/^0+/, '');
+    if(month == event){
+      return 1
+    }
+  })
+  
+  
+  if(arr.length > 0){
+    const payload =  {
+      stock: arr,
+      grossLoss,
+      grossProfit,
+      market
+    }
+      dispatch(tradeSuccess(payload));
+   
+  }else{
+    alert("No histoty for this month")
+  }
+      
+        
+   
+  }
+  
+
+
+  
   
   
   let loadCategories = async () =>  {
@@ -259,9 +366,23 @@ const ProfitDashboard = () => {
           </div>
 
           <div className='dash-2'>
+          
             <div className='dash-header-2 mt-3 mb-5 '>
               <h4>Hi {firstName}, welcome back</h4>
             </div>
+            
+            <div>
+            <DropdownButton id="dropdown-basic-button" title={month}  onSelect={handleMonthOnChange}>
+              {
+                    months.map((el, i) => (
+                      <Dropdown.Item eventKey={el.value}  >{el.key}</Dropdown.Item>
+
+                    ))
+              }
+              </DropdownButton>
+            
+            </div>
+          
 
             <div className='profit-loss-split'>
               <div className='split-button mr-5 '>
@@ -270,6 +391,7 @@ const ProfitDashboard = () => {
               </div>
             </div>
           </div>
+          
 
           <div className='table-linegraph'>
             <div className='table-section'>
@@ -291,8 +413,11 @@ const ProfitDashboard = () => {
                     <TableBody>
 
                       {
+                        
+
                         isLoadingT  ? <Spinner variant="primary" animation="border" /> : (
-                        stocks.map((row) => (
+                       stocks.length == 0 ? ( <StyledTableCell align="right">No history for this period</StyledTableCell>) :
+                       stocks.map((row) => (
                         <StyledTableRow key={row.Direction}>
                           <StyledTableCell component="th" scope="row">
                             {row.Direction}
@@ -304,7 +429,9 @@ const ProfitDashboard = () => {
 
                           
                         </StyledTableRow>
-                        )))}
+                        )))   
+                      
+                      }
                     </TableBody>
                   </Table>
                 </TableContainer>

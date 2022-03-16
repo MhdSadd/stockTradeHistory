@@ -1,74 +1,41 @@
-@media all and (min-width: 480px) {
-    .Login {
-      padding: 60px 0;
-    }
-  
-    .Login form {
-      margin: 0 auto;
-      max-width: 320px;
-    }
-  }
+.contain {
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), -0 -1px 6px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 0.5rem;
+	position: relative;
+	z-index: 1;
+	background: #ffffff;
+	border-radius: 10px;
+	max-width: 360px;
+	margin: 7rem auto;
+	padding: 45px;
+	text-align: center;
+}
 
-  body {
-    /* background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%); */
-  }
-  
-  .login {
-    width: 360px;
-    padding: 8% 0 0;
-    margin: auto;
-    font-family: 'Comfortaa', cursive;
-  }
-  
-  .form {
-    position: relative;
-    z-index: 1;
-    background: #FFFFFF;
-    border-radius: 10px;
-    max-width: 360px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-  }
-  
-  .form input {
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    border-radius: 5px;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-    font-family: 'Comfortaa', cursive;
-  }
-  
-  .form input:focus {
-    background: #dbdbdb;
-  }
-  
-  .form button {
-    font-family: 'Comfortaa', cursive;
-    text-transform: uppercase;
-    outline: 0;
-    background: #4b6cb7;
-    width: 100%;
-    border: 0;
-    border-radius: 5px;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-  }
-  
-  .form button:active {
-    background: #395591;
-  }
-  
-  .form span {
-    font-size: 75px;
-    color: #4b6cb7;
-  }
+label {
+	float: left;
+	margin-bottom: 0.7rem;
+	color: #312e2e !important;
+	font-weight: bolder;
+}
+
+input::placeholder {
+	font-size: 0.7rem;
+}
+
+.btn-def {
+	margin-top: 1.5rem;
+	font-family: "Comfortaa", cursive;
+	text-transform: uppercase;
+	outline: none !important;
+	background: #845ec2 !important;
+	width: 100%;
+	border: 0;
+	border-radius: 50px !important;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bolder !important;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}

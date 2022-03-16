@@ -1,3 +1,4 @@
+
 .whatyoucando {
   color: white;
   background-color: black;
@@ -26,7 +27,7 @@
 
 .card {
   margin-inline: auto;
-  background-color: #312E2E;
+  background-color: #312E2E !important;
   width: 80%;
   height: 250px;
   border-radius: 5px;
@@ -36,9 +37,9 @@
 }
 
 .card:hover {
-  background-color: #845EC2;
-
+  background-color: #845EC2 !important;
 }
+
 
 .mg-top {
   margin-top: 70px;
@@ -63,7 +64,7 @@
 
 @media screen and (min-width: 1020px) {
   .icon {
-    left: 90px;
+    left: 30px;
   }
 
   .cards {
